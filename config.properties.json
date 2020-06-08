@@ -1,16 +1,26 @@
 {
-	"firewall": {
-		"name": {
-			"LAN_IN": {
-				"rule": {
-					"2004": {
-						"time": {
-							"starttime": "02:00:00",
-							"stoptime": "08:00:00"
-						}
-					}
-				}
-			}
-		}
-	}
+    "firewall": {
+        "name": {
+            "LAN_IN": {
+                "default-action": "accept",
+                "description": "packets from intranet",
+                "rule": {
+                    "2020": {
+                        "action": "drop",
+                        "description": "appletv-02:00-07:00",
+                        "protocol": "all",
+                        "source": {
+                            "group": {
+                                "address-group": "5ede54a14aefe40304d8b355"
+                            }
+                        },
+                        "time": {
+                            "starttime": "02:00:00",
+                            "stoptime": "07:00:00"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

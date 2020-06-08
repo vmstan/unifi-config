@@ -1,0 +1,16 @@
+{
+	"firewall": {
+		"name": {
+			"LAN_IN": {
+				"rule": {
+					"2004": {
+						"time": {
+							"starttime": "02:00:00",
+							"stoptime": "08:00:00"
+						}
+					}
+				}
+			}
+		}
+	}
+}

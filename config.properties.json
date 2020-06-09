@@ -2,12 +2,10 @@
     "firewall": {
         "name": {
             "LAN_IN": {
-                "default-action": "accept",
-                "description": "packets from intranet",
                 "rule": {
                     "2020": {
                         "action": "drop",
-                        "description": "appletv-02:00-07:00",
+                        "description": "appletv",
                         "protocol": "all",
                         "source": {
                             "group": {

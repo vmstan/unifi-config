@@ -21,38 +21,40 @@
             }
         }
     },
-    "nat": {
-        "rule": {
-            "1": {
-                "description": "CDNS",
-                "destination": {
-                    "port": "53"
+    "service": {
+        "nat": {
+            "rule": {
+                "1": {
+                    "description": "CDNS",
+                    "destination": {
+                        "port": "53"
+                    },
+                    "inbound-interface": "eth1",
+                    "inside-address": {
+                        "address": "192.168.7.3",
+                        "port": "53"
+                    },
+                    "log": "disable",
+                    "protocol": "tcp_udp",
+                    "source": {
+                        "address": "!192.168.7.1-192.168.7.9"
+                    },
+                    "type": "destination"
                 },
-                "inbound-interface": "eth1",
-                "inside-address": {
-                    "address": "192.168.7.3",
-                    "port": "53"
-                },
-                "log": "disable",
-                "protocol": "tcp_udp",
-                "source": {
-                    "address": "!192.168.7.1-192.168.7.9"
-                },
-                "type": "destination"
-            },
-            "5001": {
-                "description": "MDNS",
-                "destination": {
-                    "address": "192.168.7.3",
-                    "port": "53"
-                },
-                "log": "disable",
-                "outbound-interface": "eth1",
-                "protocol": "tcp_udp",
-                "source": {
-                    "address": "!192.168.1.1-192.168.1.9"
-                },
-                "type": "masquerade"
+                "5001": {
+                    "description": "MDNS",
+                    "destination": {
+                        "address": "192.168.7.3",
+                        "port": "53"
+                    },
+                    "log": "disable",
+                    "outbound-interface": "eth1",
+                    "protocol": "tcp_udp",
+                    "source": {
+                        "address": "!192.168.1.1-192.168.1.9"
+                    },
+                    "type": "masquerade"
+                }
             }
         }
     }

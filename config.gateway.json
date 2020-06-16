@@ -30,7 +30,7 @@
 						"address": "!192.168.7.1-192.168.7.9",
 						"port": "53"
 					},
-					"inbound-interface": "eth0",
+					"inbound-interface": "eth1",
 					"inside-address": {
 						"address": "192.168.7.3",
 						"port": "53"
@@ -51,7 +51,7 @@
 						"port": "53"
 					},
 					"log": "disable",
-					"outbound-interface": "eth0",
+					"outbound-interface": "eth1",
 					"protocol": "tcp_udp",
 					"source": {
 						"address": "!192.168.1.1-192.168.1.9"

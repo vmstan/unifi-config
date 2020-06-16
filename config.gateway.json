@@ -21,42 +21,39 @@
             }
         }
     },
-	"service": {
-		"nat": {
-			"rule": {
-				"1000": {
-					"description": "Captive DNS",
-					"destination": {
-						"port": "53"
-					},
-					"inbound-interface": "eth1",
-					"inside-address": {
-						"address": "192.168.7.3",
-						"port": "53"
-					},
-					"log": "disable",
-					"protocol": "tcp_udp",
-					"source": {
-						"address": "!192.168.7.1-192.168.7.9"
-					},
-					"type": "destination"
-				}
-			},
-			"rule": {
-				"5001": {
-					"description": "Masquerade for DNS",
-					"destination": {
-						"address": "192.168.7.3",
-						"port": "53"
-					},
-					"log": "disable",
-					"outbound-interface": "eth1",
-					"protocol": "tcp_udp",
-					"source": {
-						"address": "!192.168.1.1-192.168.1.9"
-					},
-					"type": "masquerade"
-				}
+    "nat": {
+        "rule": {
+                "1000": {
+                        "description": "CAP-DNS",
+                        "destination": {
+                                "port": "53"
+                        },
+                        "inbound-interface": "eth1",
+                        "inside-address": {
+                                "address": "192.168.7.3",
+                                "port": "53"
+                        },
+                        "log": "disable",
+                        "protocol": "tcp_udp",
+                        "source": {
+                                "address": "!192.168.7.1-192.168.7.9"
+                        },
+                        "type": "destination"
+                },
+                "5001": {
+                        "description": "MAQ-DNS",
+                        "destination": {
+                                "address": "192.168.7.3",
+                                "port": "53"
+                        },
+                        "log": "disable",
+                        "outbound-interface": "eth1",
+                        "protocol": "tcp_udp",
+                        "source": {
+                                "address": "!192.168.1.1-192.168.1.9"
+                        },
+                        "type": "masquerade"
+                }
 			}
 		}
     }

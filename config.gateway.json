@@ -23,8 +23,8 @@
     },
     "nat": {
         "rule": {
-            "1000": {
-                "description": "DNS",
+            "1": {
+                "description": "CDNS",
                 "destination": {
                     "port": "53"
                 },
@@ -41,7 +41,7 @@
                 "type": "destination"
             },
             "5001": {
-                "description": "DNS",
+                "description": "MDNS",
                 "destination": {
                     "address": "192.168.7.3",
                     "port": "53"

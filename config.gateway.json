@@ -27,7 +27,6 @@
 				"1000": {
 					"description": "Captive DNS",
 					"destination": {
-						"address": "!192.168.7.1-192.168.7.9",
 						"port": "53"
 					},
 					"inbound-interface": "eth1",

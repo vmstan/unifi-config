@@ -24,7 +24,7 @@
     "nat": {
         "rule": {
             "1000": {
-                "description": "CAP-DNS",
+                "description": "DNS",
                 "destination": {
                     "port": "53"
                 },
@@ -41,7 +41,7 @@
                 "type": "destination"
             },
             "5001": {
-                "description": "MAQ-DNS",
+                "description": "DNS",
                 "destination": {
                     "address": "192.168.7.3",
                     "port": "53"

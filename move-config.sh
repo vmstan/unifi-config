@@ -1,9 +1,9 @@
 # !/bin/bash
 
-echo -e "Updating files"
+echo -e "Updating files via git."
 git pull
-echo -e "Moving config.gateway.json in place"
+echo -e "Moving config.gateway.json in place."
 sudo cp config.gateway.json /var/lib/unifi/sites/default/config.gateway.json
-echo -e "Setting permissions"
+echo -e "Setting permissions."
 sudo chown unifi:unifi config.gateway.json
 echo -e "Force provision on controller to complete!"

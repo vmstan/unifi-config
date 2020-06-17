@@ -25,7 +25,7 @@
         "nat": {
             "rule": {
                 "1": {
-                    "description": "CDNS",
+                    "description": "Capture DNS",
                     "destination": {
                         "port": "53"
                     },
@@ -42,7 +42,7 @@
                     "type": "destination"
                 },
                 "5001": {
-                    "description": "MDNS",
+                    "description": "Maquerade DNS",
                     "destination": {
                         "address": "192.168.7.3",
                         "port": "53"

@@ -5,7 +5,7 @@
                 "rule": {
                     "2020": {
                         "action": "drop",
-                        "description": "appletv",
+                        "description": "kids",
                         "protocol": "all",
                         "source": {
                             "group": {
@@ -14,7 +14,7 @@
                         },
                         "time": {
                             "starttime": "02:00:00",
-                            "stoptime": "07:30:00"
+                            "stoptime": "08:00:00"
                         }
                     }
                 }

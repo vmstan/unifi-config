@@ -30,58 +30,13 @@ We will configure Unbound to:
 - Verify DNSSEC signatures, discarding BOGUS domains.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853, as well as validate the certificate of the resolvers.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
-- Not resolve IPv6 addresses. (set `do-ip6` to `yes` below if you require this.)
-
-Create a new file `/etc/unbound/unbound.conf.d/pi-hole.conf`
+- Not resolve IPv6 addresses. (set `do-ip6` to `yes` in file below if you require this.)
 
 ```
-server:
-    logfile: "/var/log/unbound/unbound.log"
-    verbosity: 5
+wget -0 https://raw.githubusercontent.com/vmstan/unifi-config/master/unbound/pi-hole.conf 
+sudo mv pi-hole.conf /etc/unbound/unbound.conf.d/
 
-    interface: 127.0.0.1
-    port: 5353
-    do-ip4: yes
-    do-udp: yes
-    do-tcp: yes
-    do-ip6: no
-    prefer-ip6: no
-
-    root-hints: "/var/lib/unbound/root.hints"
-
-    harden-glue: yes
-    harden-dnssec-stripped: yes
-    use-caps-for-id: no
-
-    edns-buffer-size: 1472
-    prefetch: yes
-    num-threads: 1
-    so-rcvbuf: 1m
-
-    qname-minimisation: yes
-    prefetch: yes
-    rrset-roundrobin: yes
-    use-caps-for-id: yes
-
-    private-address: 192.168.0.0/16
-    private-address: 169.254.0.0/16
-    private-address: 172.16.0.0/12
-    private-address: 10.0.0.0/8
-    private-address: fd00::/8
-    private-address: fe80::/10
-
-    tls-cert-bundle: /etc/ssl/certs/ca-certificates.crt
-
-forward-zone:
-    name: "."
-    forward-addr: 1.1.1.1@853#cloudflare-dns.com
-    forward-addr: 1.0.0.1@853#cloudflare-dns.com
-    forward-addr: 9.9.9.9@853#dns.quad9.net
-    forward-addr: 8.8.8.8@853#dns.google
-    forward-ssl-upstream: yes
-```
-
-These four (Cloudflare twice) represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
+This file contains four (Cloudflare twice) upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
 
 Start Unbound and test that it's operational:
 

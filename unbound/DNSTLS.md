@@ -29,7 +29,8 @@ We will configure Unbound to:
 - Listen only for queries from the local Pi-hole instance on port 5353.
 - Verify DNSSEC signatures, discarding BOGUS domains.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853, as well as validate the certificate of the resolvers.
-- Not resolve IPv6 addresses. (set `do-ip6` to `yes` bekow if you require this.)
+- Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
+- Not resolve IPv6 addresses. (set `do-ip6` to `yes` below if you require this.)
 
 Create a new file `/etc/unbound/unbound.conf.d/pi-hole.conf`
 
@@ -80,7 +81,7 @@ forward-zone:
     forward-ssl-upstream: yes
 ```
 
-These four (Cloudflare twice) represent the four major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
+These four (Cloudflare twice) represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
 
 Start Unbound and test that it's operational:
 
@@ -110,6 +111,6 @@ The first command should give a status report of SERVFAIL and no IP address. The
 
 ## Pihole Configuration
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying 127.0.0.1#5335 as the Custom DNS (IPv4).
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4).
 
 Don't forget to disable any of the built in DNS resolver options.

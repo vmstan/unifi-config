@@ -33,8 +33,8 @@ We will configure Unbound to:
 - Not resolve IPv6 addresses. (set `do-ip6` to `yes` in file below if you require this.)
 
 ```
-wget -0 https://raw.githubusercontent.com/vmstan/unifi-config/master/unbound/pi-hole.conf 
-sudo mv pi-hole.conf /etc/unbound/unbound.conf.d/
+sudo wget -P /etc/unbound/unbound.conf.d/ https://raw.githubusercontent.com/vmstan/unifi-config/master/unbound/pi-hole.conf 
+```
 
 This file contains four (Cloudflare twice) upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
 

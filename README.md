@@ -10,3 +10,6 @@ A collection of documentation for overthinking my home network.
 
 ## Keepalived
 - DNS active/passive load balancing for Pi-hole.
+
+## Pi-hole
+- Configuration changes to Pi-hole that aren't Gravity Sync.

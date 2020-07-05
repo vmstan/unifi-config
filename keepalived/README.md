@@ -1,4 +1,4 @@
-# Load Balancing w/ Keepalived
+# Load Balancing Pi-hole
 
 ## Background
 
@@ -17,7 +17,7 @@ Requirements
 
 ### Both Systems
 
-On both Pi-hole, install Keepalive.
+On both Pi-hole, install Keepalived.
 
 ```
 sudo apt install keepalived

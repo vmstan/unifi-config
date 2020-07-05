@@ -1,6 +1,6 @@
 # Network Hacks
 
-A collection of documentation for overthinking my home network.
+A collection of documentation for overthinking my home network. If any of them are useful to you, even better.
 
 ## Unbound
 - DNS over TLS (DoT) configuration for Pi-hole.

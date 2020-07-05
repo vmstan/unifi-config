@@ -2,16 +2,16 @@
 
 ## Background
 
-What is better than a Pi-hole blocking ads via DNS on your network? That's right, Two Pi-hole! There are a couple of ways to accomplish this. You can setup two independant Pi-hole and link their databases together with Gravity Sync, and then hand out both DNS records in your DHCP settings.
+What is better than a [Pi-hole](https://github.com/pi-hole/pi-hole) blocking ads via DNS on your network? That's right, Two [Pi-hole](https://github.com/pi-hole/pi-hole)! There are a couple of ways to accomplish this. You can setup two independant [Pi-hole](https://github.com/pi-hole/pi-hole) and link their databases together with [Gravity Sync](https://github.com/vmstan/gravity-sync), and then hand out both DNS records in your DHCP settings.
 
-The advantage here is there's no additional software or network configuration required (aside from Gravity Sync) -- the downside is you have two places where your clients are logging lookup requests to. One way to get around this is by using keepalived and present a single virtual IP address of the two Pi-hole to clients in an active/passive mode. The two nodes will check their own status, and each other, and hand the VIP around if there are issues.
+The advantage here is there's no additional software or network configuration required (aside from [Gravity Sync](https://github.com/vmstan/gravity-sync)) -- the downside is you have two places where your clients are logging lookup requests to. One way to get around this is by using keepalived and present a single virtual IP address of the two [Pi-hole](https://github.com/pi-hole/pi-hole) to clients in an active/passive mode. The two nodes will check their own status, and each other, and hand the VIP around if there are issues.
 
 ## Installation
 
 Requirements
-- Pi-hole installed on two systems.
+- [Pi-hole](https://github.com/pi-hole/pi-hole) installed on two systems.
 - Designate one Pi-hole as primary, and one as secondary.
-- Install Gravity Sync on the secondary.
+- Install [Gravity Sync](https://github.com/vmstan/gravity-sync) on the secondary.
 - New static IP address to use a VIP.
 - DHCP server managed by your router or other device.
 

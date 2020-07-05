@@ -163,3 +163,6 @@ Check the output of `ip a` on both Pi-holes to verify that the primary system ha
 
 Refer to `unipi-keepalived.conf` and `tripi-keepalived.conf` for examples of a production primary/secondary pair to compare your own configuration files to.
 
+## DHCP
+
+You will need to adjust the DHCP settings on your router or other DHCP server, to hand out the single VIP instead of one of your Pi-hole's direct IP addresses. If you want to get really crazy you can setup four Pi-hole instances and create two VIPs between the four and hand out two DNS servers in DHCP, but that's crazy talk.

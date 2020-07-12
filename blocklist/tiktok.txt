@@ -9,6 +9,13 @@
 0.0.0.0 muscdn.com
 0.0.0.0 musical.ly
 0.0.0.0 musically.ly
+0.0.0.0 www.tiktok.com
+0.0.0.0 www.tiktok.org
+0.0.0.0 www.tiktokcdn.com
+0.0.0.0 www.tiktokv.com
+0.0.0.0 www.muscdn.com
+0.0.0.0 www.musical.ly
+0.0.0.0 musically.ly
 0.0.0.0 v16-tiktokcdn-com.akamaized.net
 0.0.0.0 p16-tiktokcdn-com.akamaized.net
 0.0.0.0 v16-tiktokcdn-com.akamaized.net
@@ -23,5 +30,6 @@
 0.0.0.0 sgali3.l.byteoversea.net
 0.0.0.0 tiktokcdn-com.akamaized.net
 0.0.0.0 ibytedtos.com
+0.0.0.0 www.ibytedtos.com
 
 # ===============================================================

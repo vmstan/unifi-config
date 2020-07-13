@@ -31,5 +31,7 @@
 0.0.0.0 tiktokcdn-com.akamaized.net
 0.0.0.0 ibytedtos.com
 0.0.0.0 www.ibytedtos.com
+0.0.0.0 vm.tiktok.com
+0.0.0.0 m.tiktok.com
 
 # ===============================================================

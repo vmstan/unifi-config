@@ -44,7 +44,7 @@ We will configure Stubby to:
 
 ```
 sudo rm /etc/stubby/stubby.yml
-sudo wget -P /etc/stubby/ https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby.yaml
+sudo wget -P /etc/stubby/ https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby.yml
 ```
 
 This file contains enteries for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
@@ -53,7 +53,7 @@ Start Stubby and test that it's operational:
 
 ```
 sudo service stubby restart
-dig vmstan.com @127.1.1.1
+dig vmstan.com @127.0.0.1 -p 5353
 ```
 
 If it doesn't resolve the site, make sure you're not blocking outbound port 853 to the IP addresses in the YAML file, on a firewall.
@@ -63,21 +63,21 @@ If it doesn't resolve the site, make sure you're not blocking outbound port 853 
 You can test TLS resolution using:
 
 ```
-dig @127.1.1.1 is-dot.cloudflareresolve.com
+dig is-dot.cloudflareresolve.com @127.0.0.1 -p 5353
 ```
 
 You can test DNSSEC validation using:
 
 ```
-dig sigfail.verteiltesysteme.net @127.1.1.1
-dig sigok.verteiltesysteme.net @127.1.1.1
+dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
+dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
 ```
 
 The first command should give a status report of SERVFAIL and no IP address. The second should give NOERROR plus an IP address.
 
 ## Pihole Configuration
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.1.1.1` as the Custom DNS (IPv4).
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4).
 
 Don't forget to disable any of the built in DNS resolver options.
 

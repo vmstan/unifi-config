@@ -61,20 +61,28 @@ If it doesn't resolve the site, make sure you're not blocking outbound port 853 
 
 ## Test Validation
 
-You can test TLS resolution using:
+**You can test TLS resolution using:**
 
 ```
 dig is-dot.cloudflareresolve.com @127.0.0.1 -p 5353
 ```
 
-You can test DNSSEC validation using:
+This will only resolve an IP address if the incoming request is via TLS port 853.
+
+**You can test DNSSEC validation using:**
 
 ```
 dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
 dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
 ```
 
-The first command should give a status report of SERVFAIL and no IP address. The second should give NOERROR plus an IP address.
+The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
+
+**You can test IPv6 (AAAA) lookups using:**
+
+```
+dig aaaa google.com @127.0.0.1 -p 5353
+```
 
 ## Pihole Configuration
 

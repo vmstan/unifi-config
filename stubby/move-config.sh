@@ -2,10 +2,10 @@
 
 echo -e "Updating files via git"
 git pull
-#echo -e "Clearing old stubby.xml"
-#sudo rm /etc/stubby/stubby.xml
-echo -e "Moving in new stubby.xml"
-sudo cp stubby.xml /etc/stubby/stubby.xml
+#echo -e "Clearing old stubby.yml"
+#sudo rm /etc/stubby/stubby.yml
+echo -e "Moving in new stubby.yml"
+sudo cp stubby.yml /etc/stubby/stubby.yml
 echo -e "Restarting the Stubby resolver"
 sudo service stubby restart
 echo -e "Showing the status of Stubby"

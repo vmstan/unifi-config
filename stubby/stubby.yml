@@ -7,7 +7,7 @@ tls_query_padding_blocksize: 128
 edns_client_subnet_private : 1
 # tls_connection_retries: 3
 # tls_backoff_time: 300
-round_robin_upstreams: 0
+round_robin_upstreams: 1
 # timeout: 3
 idle_timeout: 9000
 

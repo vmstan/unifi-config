@@ -19,8 +19,12 @@ upstream_recursive_servers:
 ## quad9 (filtered)
 #  - address_data: 9.9.9.9 
 #    tls_auth_name: "dns.quad9.net"
+#  - address_data: 149.112.112.112
+#    tls_auth_name: "dns.quad9.net"
 ## quad9 (unfiltered)
 #  - address_data: 9.9.9.10
+#    tls_auth_name: "dns.quad9.net"
+#  - address_data: 149.112.112.10
 #    tls_auth_name: "dns.quad9.net"
 ## cloudflare (unfiltered)
   - address_data: 1.1.1.1

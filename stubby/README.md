@@ -36,9 +36,10 @@ sudo apt install stubby
 
 We will configure Stubby to:
 
-- Listen only for queries from the local Pi-hole on the local loopback port 5353.
+- Listen only for queries from the local Pi-hole server on loopback port 5353.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853.
-- Leverage a primary upstream resolver, others can be selected by removing comment #'s.
+- Leverage a unfiltered Cloudflare as the primary upstream resolver.
+- Failover quickly to the alternate IP for that resolver, should it be necessary.
 - Keep the TLS connection to the upstream resolver open, to speed up future requests.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
 
@@ -80,6 +81,10 @@ The first command should give a status report of SERVFAIL and no IP address. The
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4).
 
 Don't forget to disable any of the built in DNS resolver options.
+
+## Alternate Configuration
+
+If you'd like to spray multiple upstream providers with requests, uncomment their `address_data` and `tls_auth_name` lines in the `stubby.yml` file, and then set `round_robin_upstreams: 1` -- this will send each new DNS request to a different IP in your list.
 
 ## Monitoring Traffic
 

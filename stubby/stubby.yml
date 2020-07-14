@@ -1,5 +1,5 @@
 resolution_type: GETDNS_RESOLUTION_STUB
-dnssec_return_status: GETDNS_EXTENSION_TRUE
+# dnssec_return_status: GETDNS_EXTENSION_TRUE
 dns_transport_list:
   - GETDNS_TRANSPORT_TLS
 tls_authentication: GETDNS_AUTHENTICATION_REQUIRED

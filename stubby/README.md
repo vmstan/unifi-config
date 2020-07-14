@@ -20,8 +20,8 @@ Here we will setup to encrypt upstream DNS requests and send them over port 853 
 DNS query example:
 
 ```
-"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ===> "Public Resolver" ---> "Global DNS"
-"Client" <--- ( "Pi-Hole" <~~ "Stubby" ) <--- "Public Resolver" <--- "Global DNS"
+"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ===> "Public Resolver" ---+ "Global DNS"
+"Client" <--- ( "Pi-Hole" <~~ "Stubby" ) <=== "Public Resolver" +--- "Global DNS"
 ```
 
 Note that the DNS query outside your network is now encrypted. Local network traffic to the Pi-hole remains on standard unencrypted DNS port/protocols. Stubby is not configured to cache requests, simply to pass them to the next step. However your Pi-hole and the Public Resolver will cache lookups according to the TTL of the domain.
@@ -36,11 +36,10 @@ sudo apt install stubby
 
 We will configure Stubby to:
 
-- Listen only for queries from the local Pi-hole on interface 127.1.1.1.
+- Listen only for queries from the local Pi-hole on the local loopback port 5353.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853.
-- Leverage multiple upstream resolvers in a round robin manner. (Cloudflare, Quad9, Google)
+- Leverage a primary upstream resolver, others can be selected by removing comment #'s.
 - Keep the TLS connection to the upstream resolver open, to speed up future requests.
-- Set the threshold for failed upstream requests to remove a resolver from rotation.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
 
 ```

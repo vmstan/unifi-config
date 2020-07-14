@@ -44,7 +44,7 @@ We will configure Stubby to:
 
 ```
 sudo rm /etc/stubby/stubby.yml
-sudo wget -P /etc/stubby/ https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby.xml
+sudo wget -P /etc/stubby/ https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby.yaml
 ```
 
 This file contains enteries for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.

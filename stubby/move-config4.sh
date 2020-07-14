@@ -2,7 +2,7 @@
 
 echo -e "Updating files via git"
 git pull
-echo -e "Clearing old stubby.yml
+echo -e "Clearing old stubby.yml"
 sudo rm /etc/stubby/stubby.yml
 echo -e "Moving in new IPv4 stubby.yml"
 sudo cp stubby-4.yml /etc/stubby/stubby.yml

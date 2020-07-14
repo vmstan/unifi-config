@@ -43,12 +43,21 @@ We will configure Stubby to:
 - Keep the TLS connection to the upstream resolver open, to speed up future requests.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
 
+### IPv4 Only Networks
 ```
-sudo rm /etc/stubby/stubby.yml
-sudo wget -P /etc/stubby/ https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby.yml
+cd /etc/stubby
+sudo rm stubby.yml
+sudo wget -cO - https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby-4.yml > stubby.yml
 ```
 
-This file contains enteries for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely.
+### IPv6 Enabled Networks
+```
+cd /etc/stubby
+sudo rm stubby.yml
+sudo wget -cO - https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby-6.yml > stubby.yml
+```
+
+This file contains enteries for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely. Verify the resolvers you want to use are not commented out.
 
 Start Stubby and test that it's operational:
 

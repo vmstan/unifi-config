@@ -20,7 +20,7 @@ Here we will setup to encrypt upstream DNS requests and send them over port 853 
 DNS query example:
 
 ```
-"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ---> "Public Resolver" ---> "Global DNS"
+"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ===> "Public Resolver" ---> "Global DNS"
 "Client" <--- ( "Pi-Hole" <~~ "Stubby" ) <--- "Public Resolver" <--- "Global DNS"
 ```
 

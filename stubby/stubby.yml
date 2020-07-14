@@ -15,18 +15,23 @@ listen_addresses:
   - 0::1@5353
 
 upstream_recursive_servers:
-#  - address_data: 9.9.9.9 (filtered)
+## quad9 (filtered)
+#  - address_data: 9.9.9.9 
 #    tls_auth_name: "dns.quad9.net"
-#  - address_data: 9.9.9.10 (unfiltered)
+## quad9 (unfiltered)
+#  - address_data: 9.9.9.10
 #    tls_auth_name: "dns.quad9.net"
+## cloudflare (unfiltered)
   - address_data: 1.1.1.1
     tls_auth_name: "cloudflare-dns.com"
   - address_data: 1.0.0.1
     tls_auth_name: "cloudflare-dns.com"
-#  - address_data: 1.1.1.2 (filtered)
+## cloudflare (filtered)
+#  - address_data: 1.1.1.2
 #    tls_auth_name: "cloudflare-dns.com"
-#  - address_data: 1.0.0.2 (filtered)
+#  - address_data: 1.0.0.2
 #    tls_auth_name: "cloudflare-dns.com"
+## google (logging)
 #  - address_data: 8.8.8.8
 #    tls_auth_name: "dns.google"
 #  - address_data: 8.8.4.4

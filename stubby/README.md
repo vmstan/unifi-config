@@ -20,10 +20,11 @@ Here we will setup to encrypt upstream DNS requests and send them over port 853 
 DNS query example:
 
 ```
-"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ---> "Public Resolver"
+"Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ---> "Public Resolver" ---> "Global DNS"
+"Client" <--- ( "Pi-Hole" ~~> "Stubby" ) <--- "Public Resolver" <--- "Global DNS"
 ```
 
-And then in reverse back to the client. Note that the DNS query outside your network is now encrypted. Local network traffic to the Pi-hole remains on standard unencrypted DNS port/protocols.
+Note that the DNS query outside your network is now encrypted. Local network traffic to the Pi-hole remains on standard unencrypted DNS port/protocols. Stubby is not configured to cache requests, simply to pass them to the next step. However your Pi-hole and the Public Resolver will cache lookups according to the TTL of the domain.
 
 ## Installation
 

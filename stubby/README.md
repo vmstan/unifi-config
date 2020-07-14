@@ -95,13 +95,9 @@ dig aaaa google.com @127.0.0.1 -p 5353
 
 ## Pihole Configuration
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4).
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4) and/or `0::1#5353` as the Custom DNS (IPv6) resolver.
 
 Don't forget to disable any of the built in DNS resolver options.
-
-## Alternate Configuration
-
-If you'd like to spray multiple upstream providers with requests, uncomment their `address_data` and `tls_auth_name` lines in the `stubby.yml` file, and then set `round_robin_upstreams: 1` -- this will send each new DNS request to a different IP in your list.
 
 ## Monitoring Traffic
 

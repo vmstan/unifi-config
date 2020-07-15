@@ -36,7 +36,7 @@ sudo apt install stubby
 
 We will configure Stubby to:
 
-- Listen only for queries from the local Pi-hole server on loopback port 5353.
+- Listen only for queries from the local Pi-hole server on loopback interface 127.1.1.53.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853.
 - Leverage a unfiltered Cloudflare as the primary upstream resolver.
 - Failover quickly to the alternate IP for that resolver, should it be necessary.
@@ -63,7 +63,7 @@ Start Stubby and test that it's operational:
 
 ```
 sudo service stubby restart
-dig vmstan.com @127.0.0.1 -p 5353
+dig vmstan.com @127.1.1.53
 ```
 
 If it doesn't resolve the site, make sure you're not blocking outbound port 853 to the IP addresses in the YAML file, on a firewall.
@@ -73,7 +73,7 @@ If it doesn't resolve the site, make sure you're not blocking outbound port 853 
 **You can test TLS resolution using:**
 
 ```
-dig is-dot.cloudflareresolve.com @127.0.0.1 -p 5353
+dig is-dot.cloudflareresolve.com @127.1.1.53
 ```
 
 This will only resolve an IP address if the incoming request is via TLS port 853.
@@ -81,8 +81,8 @@ This will only resolve an IP address if the incoming request is via TLS port 853
 **You can test DNSSEC validation using:**
 
 ```
-dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
-dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
+dig sigfail.verteiltesysteme.net @127.1.1.53
+dig sigok.verteiltesysteme.net @127.1.1.53
 ```
 
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
@@ -90,14 +90,16 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 **You can test IPv6 (AAAA) lookups using:**
 
 ```
-dig aaaa google.com @127.0.0.1 -p 5353
+dig aaaa google.com @127.1.1.53
 ```
 
 ## Pihole Configuration
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4) and/or `0::1#5353` as the Custom DNS (IPv6) resolver.
+Finally, configure Pi-hole to use Stubby under `Settings > DNS > Upstream DNS Servers` in the user interface and specifying `127.1.1.53` as the Custom DNS (IPv4) and/or `0::1#5353` as the Custom DNS (IPv6) resolver. Leave `Use DNSSEC` unchecked, as Cloudflare does this for us.
 
-Don't forget to disable any of the built in DNS resolver options.
+_Don't forget to disable any of the built in DNS resolver options._
+
+Under `Local DNS Records` in the Pi-hole interface, add the domain `stubby` and the IP address `127.1.1.53` -- this will allow your stats to show Stubby as the destination for non-blocked/non-cached requests instead of the IP address.
 
 ## Monitoring Traffic
 

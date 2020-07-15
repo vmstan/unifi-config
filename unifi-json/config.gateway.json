@@ -1,5 +1,25 @@
 {
     "firewall": {
+        "modify": {
+            "LOAD_BALANCE": {
+                "description": "LOAD_BALANCE",
+                "rule": {
+                    "2640": {
+                        "action": "modify",
+                        "destination": {
+                            "address": "!192.168.7.5-192.168.7.7"
+                        },
+                        "modify": {
+                            "table": "5"
+                        },
+                        "protocol": "all",
+                        "source": {
+                            "address": "192.168.254.0/24"
+                        }
+                    }
+                }
+            }
+        },
         "name": {
             "LAN_IN": {
                 "rule": {
@@ -15,6 +35,21 @@
                         "time": {
                             "starttime": "04:00:00",
                             "stoptime": "07:00:00"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "protocols": {
+        "static": {
+            "table": {
+                "5": {
+                    "route": {
+                        "0.0.0.0/0": {
+                            "next-hop": {
+                                "98.156.88.132": "''"
+                            }
                         }
                     }
                 }

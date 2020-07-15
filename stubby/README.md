@@ -1,4 +1,4 @@
-# DNS over TLS (DoT)
+# DNS over TLS (DoT) w/ Stubby
 
 ## Background
 
@@ -33,6 +33,8 @@ The first thing you need to do is to install the DNS resolver, Stubby.
 ```
 sudo apt install stubby
 ```
+
+(On Raspbian/Ubuntu/Debian-based distros use the above command. It should be available in other package managers. You can also install it from scratch by [following these instructions](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby#DNSPrivacyDaemonStubby-InstallationGuides).)
 
 We will configure Stubby to:
 

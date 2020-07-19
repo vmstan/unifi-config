@@ -7,7 +7,7 @@ tls_query_padding_blocksize: 128
 edns_client_subnet_private : 1
 # tls_connection_retries: 3
 # tls_backoff_time: 300
-round_robin_upstreams: 0
+round_robin_upstreams: 1
 # timeout: 3
 idle_timeout: 9000
 
@@ -40,13 +40,13 @@ upstream_recursive_servers:
 ## quad9 (unfiltered)
   - address_data: 9.9.9.10
     tls_auth_name: "dns.quad9.net"
-#  - address_data: 149.112.112.10
-#    tls_auth_name: "dns.quad9.net"
+  - address_data: 149.112.112.10
+    tls_auth_name: "dns.quad9.net"
 ## google (logging)
-#  - address_data: 8.8.8.8
-#    tls_auth_name: "dns.google"
-#  - address_data: 8.8.4.4
-#    tls_auth_name: "dns.google"
+  - address_data: 8.8.8.8
+    tls_auth_name: "dns.google"
+  - address_data: 8.8.4.4
+    tls_auth_name: "dns.google"
 
 ### ipv6
 ## quad9 (filtered)

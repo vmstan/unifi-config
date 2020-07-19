@@ -45,10 +45,10 @@ upstream_recursive_servers:
 #  - address_data: 149.112.112.10
 #    tls_auth_name: "dns.quad9.net"
 ## google (logging)
-#  - address_data: 8.8.8.8
-#    tls_auth_name: "dns.google"
-#  - address_data: 8.8.4.4
-#    tls_auth_name: "dns.google"
+  - address_data: 8.8.8.8
+    tls_auth_name: "dns.google"
+  - address_data: 8.8.4.4
+    tls_auth_name: "dns.google"
 
 ### ipv6
 ## quad9 (filtered)

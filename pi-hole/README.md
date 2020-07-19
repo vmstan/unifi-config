@@ -20,7 +20,7 @@ Adds non-default networks on USG to Pihole for reverse lookups.
 ```
 server=/8.168.192.in-addr.arpa/192.168.7.1
 server=/9.168.192.in-addr.arpa/192.168.7.1
-server=/2.168.192.in-addr.arpa/192.168.2.1
+server=/3.168.192.in-addr.arpa/192.168.7.1
 
 server=/guest.smg/192.168.7.1
 server=/254.168.192.in-addr.arpa/192.168.7.1

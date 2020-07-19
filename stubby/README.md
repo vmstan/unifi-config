@@ -42,7 +42,7 @@ We will configure Stubby to:
 - Forward all requests to upstream DNS resolvers only using DoT on port 853.
 - Leverage a unfiltered Cloudflare as the primary upstream resolver.
 - Failover quickly to the alternate IP for Cloudflare, should it be necessary.
-- If something like this happens again, fail over to Quad9 as a backup resolver.
+- If [something like this](https://techcrunch.com/2020/07/17/cloudflare-dns-goes-down-taking-a-large-piece-of-the-internet-with-it/) happens again, failover to Quad9 as a backup resolver.
 - Keep the TLS connection to the upstream resolver open, to speed up future requests.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
 

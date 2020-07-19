@@ -7,7 +7,7 @@ tls_query_padding_blocksize: 128
 edns_client_subnet_private : 1
 # tls_connection_retries: 3
 # tls_backoff_time: 300
-round_robin_upstreams: 1
+round_robin_upstreams: 0
 # timeout: 3
 idle_timeout: 9000
 
@@ -18,37 +18,37 @@ listen_addresses:
 upstream_recursive_servers:
 ### ipv4
 ## cloudflare (unfiltered)
-#  - address_data: 1.1.1.1
-#    tls_auth_name: "cloudflare-dns.com"
-#  - address_data: 1.0.0.1
-#    tls_auth_name: "cloudflare-dns.com"
+  - address_data: 1.1.1.1
+    tls_auth_name: "cloudflare-dns.com"
+  - address_data: 1.0.0.1
+    tls_auth_name: "cloudflare-dns.com"
 ## cloudflare (filtered)
-  - address_data: 1.1.1.2
-    tls_auth_name: "cloudflare-dns.com"
-  - address_data: 1.0.0.2
-    tls_auth_name: "cloudflare-dns.com"
+#  - address_data: 1.1.1.2
+#    tls_auth_name: "cloudflare-dns.com"
+#  - address_data: 1.0.0.2
+#    tls_auth_name: "cloudflare-dns.com"
 ## cloudflare (pornblock)
 #  - address_data: 1.1.1.3
 #    tls_auth_name: "cloudflare-dns.com"
 #  - address_data: 1.0.0.3
 #    tls_auth_name: "cloudflare-dns.com"
 ## quad9 (filtered)
-  - address_data: 9.9.9.9 
-    tls_auth_name: "dns.quad9.net"
-  - address_data: 149.112.112.9
-    tls_auth_name: "dns.quad9.net"
-  - address_data: 149.112.112.112
-    tls_auth_name: "dns.quad9.net"
-## quad9 (unfiltered)
-#  - address_data: 9.9.9.10
+#  - address_data: 9.9.9.9 
 #    tls_auth_name: "dns.quad9.net"
+#  - address_data: 149.112.112.9
+#    tls_auth_name: "dns.quad9.net"
+#  - address_data: 149.112.112.112
+#    tls_auth_name: "dns.quad9.net"
+## quad9 (unfiltered)
+  - address_data: 9.9.9.10
+    tls_auth_name: "dns.quad9.net"
 #  - address_data: 149.112.112.10
 #    tls_auth_name: "dns.quad9.net"
 ## google (logging)
-  - address_data: 8.8.8.8
-    tls_auth_name: "dns.google"
-  - address_data: 8.8.4.4
-    tls_auth_name: "dns.google"
+#  - address_data: 8.8.8.8
+#    tls_auth_name: "dns.google"
+#  - address_data: 8.8.4.4
+#    tls_auth_name: "dns.google"
 
 ### ipv6
 ## quad9 (filtered)

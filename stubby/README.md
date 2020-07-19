@@ -4,22 +4,22 @@
 
 From the "[All Around DNS](https://docs.pi-hole.net/guides/unbound/)" instructions on pi-hole.net:
 
-> Pi-hole includes a caching and forwarding DNS server, now known as FTLDNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s). 
+> Pi-hole includes a caching and forwarding DNS server, now known as FTLDNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s).
 
 There are four common methods for providing these upstream DNS instances that are popular with Pi-hole users. Pi-hole as it's commonly deployed from the installation script only takes advantage of one of these methods.
 
-- Unencrypted traffic to an shared upstream resolver 
+- Unencrypted traffic to an shared upstream resolver
 - Unencrypted traffic by running your own private recursive resolver
-- Encrypted traffic by tunneling DNS over HTTPS, referred to as "DoH" 
+- Encrypted traffic by tunneling DNS over HTTPS, referred to as "DoH"
 - Encrypted traffic by sending DNS over TLS, referred to as "DoT"
 
-Each option has various advantages and disadvantages and there is no single right method for all deployments. 
+Each option has various advantages and disadvantages and there is no single right method for all deployments.
 
 Here we will setup to encrypt upstream DNS requests and send them over port 853 to a public resolver (Cloudflare, Quad9, Google, etc) in a secure manner using DNS over TLS (DoT).
 
 DNS query example:
 
-```
+```txt
 "Client" ---> ( "Pi-Hole" ~~> "Stubby" ) ===> "Public Resolver" ---+ "Global DNS"
 "Client" <--- ( "Pi-Hole" <~~ "Stubby" ) <=== "Public Resolver" +--- "Global DNS"
 ```
@@ -30,40 +30,43 @@ Note that the DNS query outside your network is now encrypted. Local network tra
 
 The first thing you need to do is to install the DNS resolver, Stubby.
 
-```
+```bash
 sudo apt install stubby
 ```
 
-(On Raspbian/Ubuntu/Debian-based distros use the above command. It should be available in other package managers. You can also install it from scratch by [following these instructions](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby#DNSPrivacyDaemonStubby-InstallationGuides).)
+(On Raspbian/Ubuntu/Debian-based distributions use the above command. It should be available in other package managers. You can also install it from scratch by [following these instructions](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby#DNSPrivacyDaemonStubby-InstallationGuides).)
 
 We will configure Stubby to:
 
 - Listen only for queries from the local Pi-hole server on loopback interface 127.1.1.53.
 - Forward all requests to upstream DNS resolvers only using DoT on port 853.
 - Leverage a unfiltered Cloudflare as the primary upstream resolver.
-- Failover quickly to the alternate IP for that resolver, should it be necessary.
+- Failover quickly to the alternate IP for Cloudflare, should it be necessary.
+- If something like this happens again, fail over to Quad9 as a backup resolver.
 - Keep the TLS connection to the upstream resolver open, to speed up future requests.
 - Not pass requests for local IP ranges (this should be handled by Pi-hole anyway.)
 
 ### IPv4 Only Networks
-```
+
+```bash
 cd /etc/stubby
 sudo rm stubby.yml
 sudo wget -cO - https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby-4.yml > stubby.yml
 ```
 
 ### IPv6 Enabled Networks
-```
+
+```bash
 cd /etc/stubby
 sudo rm stubby.yml
 sudo wget -cO - https://raw.githubusercontent.com/vmstan/unifi-config/master/stubby/stubby-6.yml > stubby.yml
 ```
 
-This file contains enteries for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely. Verify the resolvers you want to use are not commented out.
+This file contains enters for upstream resolvers that represent the three major providers of DNS over TLS. If you do not want to use one or more of these, simply comment them out with `#` or remove the line entirely. Verify the resolvers you want to use are not commented out.
 
 Start Stubby and test that it's operational:
 
-```
+```bash
 sudo service stubby restart
 dig vmstan.com @127.1.1.53
 ```
@@ -74,7 +77,7 @@ If it doesn't resolve the site, make sure you're not blocking outbound port 853 
 
 **You can test TLS resolution using:**
 
-```
+```bash
 dig is-dot.cloudflareresolve.com @127.1.1.53
 ```
 
@@ -82,7 +85,7 @@ This will only resolve an IP address if the incoming request is via TLS port 853
 
 **You can test DNSSEC validation using:**
 
-```
+```bash
 dig sigfail.verteiltesysteme.net @127.1.1.53
 dig sigok.verteiltesysteme.net @127.1.1.53
 ```
@@ -91,7 +94,7 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 **You can test IPv6 (AAAA) lookups using:**
 
-```
+```bash
 dig aaaa google.com @127.1.1.53
 ```
 
@@ -107,6 +110,6 @@ Under `Local DNS Records` in the Pi-hole interface, add the domain `stubby` and 
 
 Capturing firewall traffic through your USG. Use eth1 for the LAN traffic eth0 for WAN.
 
-```
+```bash
 sudo tcpdump -npi eth# port 853
 ```

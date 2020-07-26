@@ -12,7 +12,7 @@ round_robin_upstreams: 0
 idle_timeout: 9000
 
 listen_addresses:
-  - 127.1.1.53
+  - 127.1.1.53#853
   - 0::1@5353
 
 upstream_recursive_servers:

@@ -68,7 +68,7 @@ Start Stubby and test that it's operational:
 
 ```bash
 sudo service stubby restart
-dig vmstan.com @127.1.1.53
+dig vmstan.com @127.1.1.53 -p 5553
 ```
 
 If it doesn't resolve the site, make sure you're not blocking outbound port 853 to the IP addresses in the YAML file, on a firewall.
@@ -78,7 +78,7 @@ If it doesn't resolve the site, make sure you're not blocking outbound port 853 
 **You can test TLS resolution using:**
 
 ```bash
-dig is-dot.cloudflareresolve.com @127.1.1.53
+dig is-dot.cloudflareresolve.com @127.1.1.53 -p 5553
 ```
 
 This will only resolve an IP address if the incoming request is via TLS port 853.
@@ -86,8 +86,8 @@ This will only resolve an IP address if the incoming request is via TLS port 853
 **You can test DNSSEC validation using:**
 
 ```bash
-dig sigfail.verteiltesysteme.net @127.1.1.53
-dig sigok.verteiltesysteme.net @127.1.1.53
+dig sigfail.verteiltesysteme.net @127.1.1.53 -p 5553
+dig sigok.verteiltesysteme.net @127.1.1.53 -p 5553
 ```
 
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
@@ -95,12 +95,12 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 **You can test IPv6 (AAAA) lookups using:**
 
 ```bash
-dig aaaa google.com @127.1.1.53
+dig aaaa google.com @127.1.1.53 -p 5553
 ```
 
 ## Pihole Configuration
 
-Finally, configure Pi-hole to use Stubby under `Settings > DNS > Upstream DNS Servers` in the user interface and specifying `127.1.1.53` as the Custom DNS (IPv4) and/or `0::1#5353` as the Custom DNS (IPv6) resolver. Leave `Use DNSSEC` unchecked, as Cloudflare does this for us.
+Finally, configure Pi-hole to use Stubby under `Settings > DNS > Upstream DNS Servers` in the user interface and specifying `127.1.1.53#5553` as the Custom DNS (IPv4) and/or `0::1#5553` as the Custom DNS (IPv6) resolver. Leave `Use DNSSEC` unchecked, as Cloudflare does this for us.
 
 _Don't forget to disable any of the built in DNS resolver options._
 

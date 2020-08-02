@@ -12,7 +12,7 @@ else
 fi
 
 # check for unbound service status
-UNBCHECK=$(ps ax | grep -v grep | grep 'unbound -d')
+UNBCHECK=$(ps ax | grep -v grep | grep 'stubby')
 if [ "$UNBCHECK" != "" ]
 then
 	STATUS=$((STATUS+0))

@@ -62,6 +62,7 @@
                 "8": {
                     "description": "DNS Redirect VLAN 8",
                     "destination": {
+                        "address": "!192.168.7.5-192.168.7.7",
                         "port": "53"
                     },
                     "inbound-interface": "eth0.8",
@@ -69,15 +70,12 @@
                         "address": "192.168.7.6",
                         "port": "53"
                     },
-                    "source": {
-                        "address": "!192.168.7.5-192.168.7.7"
-                    },
                     "log": "disable",
                     "protocol": "tcp_udp",
                     "type": "destination"
                 },
                 "8008": {
-                    "description": "Translate DNS to Internal VLAN 2",
+                    "description": "Translate DNS to Internal VLAN 8",
                     "destination": {
                         "address": "192.168.7.6",
                         "port": "53"

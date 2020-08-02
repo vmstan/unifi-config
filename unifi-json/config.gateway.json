@@ -59,6 +59,24 @@
     "service": {
         "nat": {
             "rule": {
+                "7": {
+                    "description": "DNS Redirect VLAN Default",
+                    "destination": {
+                        "address": "!192.168.7.5-192.168.7.7",
+                        "port": "53"
+                    },
+                    "inbound-interface": "eth0",
+                    "inside-address": {
+                        "address": "192.168.7.6",
+                        "port": "53"
+                    },
+                    "log": "disable",
+                    "protocol": "tcp_udp",
+                    "source": {		
+                        "address": "!192.168.7.1-192.168.7.7"		
+                    },
+                    "type": "destination"
+                },
                 "8": {
                     "description": "DNS Redirect VLAN 8",
                     "destination": {
@@ -103,6 +121,20 @@
                     "log": "disable",
                     "protocol": "tcp_udp",
                     "type": "destination"
+                },
+                "8007": {
+                    "description": "Translate DNS Default VLAN",
+                    "destination": {
+                        "address": "192.168.7.6",
+                        "port": "53"
+                    },
+                    "log": "disable",
+                    "outbound-interface": "eth0",
+                    "protocol": "tcp_udp",
+                    "source": {		
+                        "address": "!192.168.7.1-192.168.7.7"		
+                    },
+                    "type": "masquerade"
                 },
                 "8008": {
                     "description": "Translate DNS VLAN 8",

@@ -28,3 +28,4 @@
 0.0.0.0 secondary.safe.dns.yandex.ru
 0.0.0.0 family.dns.yandex.ru
 0.0.0.0 secondary.family.dns.yandex.ru
+0.0.0.0 doh.dns.apple.com

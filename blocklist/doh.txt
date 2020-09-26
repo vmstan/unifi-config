@@ -29,3 +29,5 @@
 0.0.0.0 family.dns.yandex.ru
 0.0.0.0 secondary.family.dns.yandex.ru
 0.0.0.0 doh.dns.apple.com
+0.0.0.0 dns1.nextdns.io
+0.0.0.0 dns2.nextdns.io

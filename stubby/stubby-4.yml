@@ -18,10 +18,10 @@ listen_addresses:
 upstream_recursive_servers:
 ### ipv4
 ## cloudflare (unfiltered)
-  - address_data: 1.1.1.1
-    tls_auth_name: "cloudflare-dns.com"
-  - address_data: 1.0.0.1
-    tls_auth_name: "cloudflare-dns.com"
+#  - address_data: 1.1.1.1
+#    tls_auth_name: "cloudflare-dns.com"
+#  - address_data: 1.0.0.1
+#    tls_auth_name: "cloudflare-dns.com"
 ## cloudflare (filtered)
 #  - address_data: 1.1.1.2
 #    tls_auth_name: "cloudflare-dns.com"
@@ -42,8 +42,8 @@ upstream_recursive_servers:
 ## quad9 (unfiltered)
   - address_data: 9.9.9.10
     tls_auth_name: "dns.quad9.net"
-#  - address_data: 149.112.112.10
-#    tls_auth_name: "dns.quad9.net"
+  - address_data: 149.112.112.10
+    tls_auth_name: "dns.quad9.net"
 ## google (logging)
 #  - address_data: 8.8.8.8
 #    tls_auth_name: "dns.google"

@@ -35,7 +35,7 @@ systemctl enable docker
 
 ```bash
 pip3 install --upgrade pip
-pip3 install docker-compose
+python3 -m pip install -IU docker-compose
 ```
 
 ## Static IP Configs

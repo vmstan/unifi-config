@@ -66,7 +66,7 @@ sudo service unbound start
 dig vmstan.com @127.0.0.1 -p 5353
 ```
 
-If it doesn't resolve the site, make sure you're not blocking outbound port 853 on a firewall.
+If it doesn't resolve the site, make sure you're not blocking outbound port 5353 on a firewall.
 
 ## Test Validation
 
@@ -96,5 +96,5 @@ Don't forget to disable any of the built in DNS resolver options.
 Capturing firewall traffic through the USG. Use eth1 for the LAN traffic eth0 for WAN.
 
 ```
-sudo tcpdump -npi eth# port 853
+sudo tcpdump -npi eth# port 53
 ```

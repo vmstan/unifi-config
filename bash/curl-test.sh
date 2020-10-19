@@ -1,2 +1,2 @@
-$pathtest=realpath $0
+pathtest=$(realpath $0)
 echo $pathtest

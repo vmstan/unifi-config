@@ -74,7 +74,7 @@ docker run -d \
  -e TZ=America/Chicago \
  -e SERVERURL=vmstan.net \
  -e SERVERPORT=51820 \
- -e PEERS=ms \
+ -e PEERS=2 \
  -e PEERDNS=192.168.7.7,192.168.7.5 \
  -e INTERNAL_SUBNET=192.168.11.0 \
  -e ALLOWEDIPS=192.168.7.7/32,192.168.7.5/32 \

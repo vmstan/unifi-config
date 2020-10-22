@@ -65,6 +65,7 @@ fancybits/channels-dvr:tve
 
 ## Wireguard
 
+```bash
 docker run -d \
  --name=wireguard \
  --cap-add=NET_ADMIN \
@@ -84,3 +85,15 @@ docker run -d \
  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
  --restart unless-stopped \
 linuxserver/wireguard
+```
+
+## Cloudflared
+
+```bash
+docker run -d \
+ --name=cloudflared \
+ -p 5053:5053/udp \
+ -p 49312:49312 \
+ -e TZ=America/Chicago \
+crazymax/cloudflared:latest
+```

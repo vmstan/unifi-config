@@ -97,3 +97,18 @@ docker run -d \
  -e TZ=America/Chicago \
 crazymax/cloudflared:latest
 ```
+
+## Unbound
+
+```bash
+docker run -d \
+ --name unbound-rpi \
+ -e PUID=0 \
+ -e PGID=0 \
+ --net=host \
+ -p 5335:5335/udp \
+ -p 5335:5335/tcp \
+ -v /home/pi/unbound:/opt/unbound/etc/unbound/ \
+ --restart=always \
+mvance/unbound-rpi:latest
+```

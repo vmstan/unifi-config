@@ -95,6 +95,7 @@ docker run -d \
  -p 5053:5053/udp \
  -p 49312:49312 \
  -e TZ=America/Chicago \
+ --restart unless-stopped \
 crazymax/cloudflared:latest
 ```
 
@@ -111,4 +112,31 @@ docker run -d \
  -v /home/pi/unbound:/opt/unbound/etc/unbound/ \
  --restart=always \
 mvance/unbound-rpi:latest
+```
+
+## Portainer
+
+### Server
+
+```bash
+docker run -d \
+ --name Portainer \
+ -p 8000:9000 \
+ -p 9000:9000 \
+ --restart unless-stopped \
+ -v /var/run/docker.sock:/var/run/docker.sock \
+ -v portainer_data:/data \
+portainer/portainer-ce
+```
+
+### Agent
+
+```bash
+docker run -d \
+ -p 9001:9001 \
+ --name portainer_agent \
+ --restart=always \
+ -v /var/run/docker.sock:/var/run/docker.sock \
+ -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+portainer/agent
 ```

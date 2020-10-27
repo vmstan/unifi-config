@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    cap_add:
+      - NET_ADMIN
+    environment:
+      ServerIP: 192.168.7.5
+      TZ: "America/Chicago"
+      WEBPASSWORD: PASSWORD
+      DNS1: 192.168.7.139#8053
+      DNS2: 192.168.7.139#8053
+    volumes:
+      - "./etc-pihole/:/etc/pihole/"
+      - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
+    network_mode: host
+    restart: unless-stopped

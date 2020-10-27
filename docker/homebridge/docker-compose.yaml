@@ -1,0 +1,15 @@
+version: "3"
+services:
+  homebridge:
+    container_name: homebridge
+    image: "oznu/homebridge:latest"
+    network_mode: host
+    environment:
+      TZ: America/Chicago
+      uid: 0
+      gid: 0
+      HOMEBRIDGE_CONFIG_UI: 1
+      HOMEBRIDGE_CONFIG_UI_PORT: 8080
+    volumes:
+      - "/home/vmstan/homebridge:/homebridge"
+    restart: unless-stopped

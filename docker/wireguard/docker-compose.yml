@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+    wireguard:
+        container_name: wireguard
+        environment:
+            - PUID=0
+            - PGID=0
+            - TZ=America/Chicago
+            - SERVERURL=vmstan.net
+            - SERVERPORT=51820
+            - PEERS=2
+            - 'PEERDNS=192.168.7.7,192.168.7.5'
+            - INTERNAL_SUBNET=192.168.11.0
+            - 'ALLOWEDIPS=192.168.7.7/32,192.168.7.5/32'
+        ports:
+            - '51820:51820/udp'
+        volumes:
+            - '/home/vmstan/wireguard:/config'
+            - '/lib/modules:/lib/modules'
+        restart: unless-stopped
+        image: linuxserver/wireguard

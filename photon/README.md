@@ -44,4 +44,11 @@ python3 -m pip install -IU docker-compose
 netmgr ip4_address --set --interface eth0 --mode static --addr 192.168.7.30/24 --gateway 192.168.7.1
 netmgr dns_servers --set --mode static --servers 127.0.0.1,192.168.7.7
 netmgr dns_domains --add --domains vmstan.net
+
+netmgr dns_servers --set --mode static --servers 192.168.7.7,192.168.7.5
+netmgr dns_domains --add --domains vmstan.net
 ```
+
+## Photon OS 4 beta issue on ARM
+
+Create `/etc/modprobe.d/blacklist.conf`  with `blacklist vsock_loopback`

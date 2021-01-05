@@ -3,17 +3,17 @@
 <plist version="1.0">
     <dict>
         <key>PayloadDisplayName</key>
-        <string>Cloudflare TLS</string>
+        <string>Cloudflare DOH</string>
         <key>PayloadDescription</key>
         <string>This profile enables Cloudflare on insecure networks using the new native Encrypted DNS feature.</string>
         <key>PayloadIdentifier</key>
-        <string>com.apple.dnsSettings.managed.9d6e5fdf-e404-4f34-ae94-27ed2f636ac4</string>
+        <string>com.apple.dnsSettings.managed.c5a076fb-5f1e-445d-bf74-c67312d07986</string>
         <key>PayloadScope</key>
         <string>User</string>
         <key>PayloadType</key>
         <string>Configuration</string>
         <key>PayloadUUID</key>
-        <string>35d5c8a0-afa6-4b36-a9fe-099a997b44ad</string>
+        <string>b313269a-e180-45ff-8192-faf735835021</string>
         <key>PayloadVersion</key>
         <integer>1</integer>
         <key>PayloadContent</key>
@@ -22,7 +22,7 @@
                 <key>DNSSettings</key>
                 <dict>
                     <key>DNSProtocol</key>
-                    <string>TLS</string>
+                    <string>HTTPS</string>
                     <key>ServerAddresses</key>
                     <array>
                         <string>2606:4700:4700::1111</string>
@@ -30,8 +30,8 @@
                         <string>1.1.1.1</string>
                         <string>1.0.0.1</string>
                     </array>
-                    <key>ServerName</key>
-                    <string>cloudflare-dns.com</string>
+                    <key>ServerURL</key>
+                    <string>https://cloudflare-dns.com/dns-query</string>
                 </dict>
                 <key>OnDemandRules</key>
                 <array>
@@ -71,9 +71,9 @@
                 <key>PayloadIdentifier</key>
                 <string>com.vmstan.apple-dns</string>
                 <key>PayloadUUID</key>
-                <string>32E01895-86AB-40AE-ACD2-4460D584EA35</string>
+                <string>A4475135-633A-4F15-A79B-BE15093DC97A</string>
                 <key>PayloadDisplayName</key>
-                <string>Cloudflare TLS</string>
+                <string>Cloudflare DOH</string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
             </dict>

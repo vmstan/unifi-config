@@ -9,7 +9,7 @@ services:
       uid: 0
       gid: 0
       HOMEBRIDGE_CONFIG_UI: 1
-      HOMEBRIDGE_CONFIG_UI_PORT: 8080
+      HOMEBRIDGE_CONFIG_UI_PORT: 80
     volumes:
-      - "/home/vmstan/homebridge:/homebridge"
+      - ".config:/homebridge"
     restart: unless-stopped

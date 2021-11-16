@@ -1,138 +1,37 @@
 {
     "firewall": {
-        "name": {
-            "LAN_IN": {
+        "modify": {
+            "LOAD_BALANCE": {
+                "description": "LOAD_BALANCE",
                 "rule": {
-                    "2020": {
-                        "action": "drop",
-                        "description": "kids",
+                    "2640": {
+                        "action": "modify",
+                        "destination": {
+                            "address": "!192.168.7.0/24"
+                        },
+                        "modify": {
+                            "table": "5"
+                        },
                         "protocol": "all",
                         "source": {
-                            "group": {
-                                "address-group": "5ede54a14aefe40304d8b355"
-                            }
-                        },
-                        "time": {
-                            "starttime": "04:00:00",
-                            "stoptime": "07:00:00"
+                            "address": "192.168.8.0/24"
                         }
                     }
                 }
             }
-        }
-    },
-    "service": {
-        "nat": {
-            "rule": {
-                "7": {
-                    "description": "DNS Redirect VLAN Default",
-                    "destination": {
-                        "address": "!192.168.7.5-192.168.7.7",
-                        "port": "53"
-                    },
-                    "inbound-interface": "eth0",
-                    "inside-address": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "protocol": "tcp_udp",
-                    "source": {		
-                        "address": "!192.168.7.1-192.168.7.7"		
-                    },
-                    "type": "destination"
-                },
-                "8": {
-                    "description": "DNS Redirect VLAN 8",
-                    "destination": {
-                        "address": "!192.168.7.5-192.168.7.7",
-                        "port": "53"
-                    },
-                    "inbound-interface": "eth0.8",
-                    "inside-address": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "protocol": "tcp_udp",
-                    "type": "destination"
-                },
-                "9": {
-                    "description": "DNS Redirect VLAN 9",
-                    "destination": {
-                        "address": "!192.168.7.5-192.168.7.7",
-                        "port": "53"
-                    },
-                    "inbound-interface": "eth0.9",
-                    "inside-address": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "protocol": "tcp_udp",
-                    "type": "destination"
-                },
-                "254": {
-                    "description": "DNS Redirect VLAN 254",
-                    "destination": {
-                        "address": "!192.168.7.5-192.168.7.7",
-                        "port": "53"
-                    },
-                    "inbound-interface": "eth0.254",
-                    "inside-address": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "protocol": "tcp_udp",
-                    "type": "destination"
-                },
-                "8007": {
-                    "description": "Translate DNS Default VLAN",
-                    "destination": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "outbound-interface": "eth0",
-                    "protocol": "tcp_udp",
-                    "source": {		
-                        "address": "!192.168.7.1-192.168.7.7"		
-                    },
-                    "type": "masquerade"
-                },
-                "8008": {
-                    "description": "Translate DNS VLAN 8",
-                    "destination": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "outbound-interface": "eth0.8",
-                    "protocol": "tcp_udp",
-                    "type": "masquerade"
-                },
-                "8009": {
-                    "description": "Translate DNS VLAN 9",
-                    "destination": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "outbound-interface": "eth0.9",
-                    "protocol": "tcp_udp",
-                    "type": "masquerade"
-                },
-                "8254": {
-                    "description": "Translate DNS VLAN 254",
-                    "destination": {
-                        "address": "192.168.7.6",
-                        "port": "53"
-                    },
-                    "log": "disable",
-                    "outbound-interface": "eth0.254",
-                    "protocol": "tcp_udp",
-                    "type": "masquerade"
+        },
+        "protocols": {
+            "static": {
+                "table": {
+                    "5": {
+                        "route": {
+                            "0.0.0.0/0": {
+                                "next-hop": {
+                                    "98.156.64.1": "''"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

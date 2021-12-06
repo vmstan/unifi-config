@@ -6,9 +6,6 @@
                 "rule": {
                     "2640": {
                         "action": "modify",
-                        "destination": {
-                            "address": "!192.168.7.0/24"
-                        },
                         "modify": {
                             "table": "5"
                         },

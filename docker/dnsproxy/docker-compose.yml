@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  dnsproxy:
+    container_name: dnsproxy
+    environment:
+      - "CONFIG=--cache --cache-min-ttl=1800 -u=tls://9.9.9.9 -f=tls://1.1.1.1"
+    ports:
+      - '53:53/udp'
+    restart: unless-stopped
+    image: vmstan/dnsproxy

@@ -1,18 +1,92 @@
-version: '3'
+version: '3.9'
+
+networks:
+  frontend:
+    name: minecraft_network
 
 services:
-  minecraft:
-    container_name: mc-java
-    image: itzg/minecraft-server
+  mc-java-survival:
+    container_name: mc-java-survival
+    image: itzg/minecraft-server:latest
+    networks:
+      frontend:
     ports:
-      - "25565:25565"
+      - "25665:25565"
     volumes:
-      - "./config:/data"
+      - "/volume1/docker/minecraft-java-survival:/data"
     environment:
       EULA: "TRUE"
       TZ: "America/Chicago"
-      INIT_MEMORY: "1G"
-      MAX_MEMORY: "5G"
+      MEMORY: "1G"
       DIFFICULTY: "peaceful"
       OPS: "Stantactical"
-    restart: always
+      TYPE: "VANILLA"
+      VERSION: "LATEST"
+      ENABLE_RCON: "false"
+      OVERRIDE_SERVER_PROPERTIES: "true"
+      ICON: "https://vmstan.com/content/images/2021/12/IMG_0181_red.png"
+      PVP: "true"
+      MODE: "survival"
+      MOTD: "MHD Java Survival"
+    restart: unless-stopped
+  mc-java-creative:
+    container_name: mc-java-creative
+    image: itzg/minecraft-server:latest
+    networks:
+      frontend:
+    ports:
+      - "25565:25565"
+    volumes:
+      - "/volume1/docker/minecraft-java-creative:/data"
+    environment:
+      EULA: "TRUE"
+      TZ: "America/Chicago"
+      MEMORY: "1G"
+      DIFFICULTY: "normal"
+      OPS: "Stantactical, JivePhoenixPDan"
+      TYPE: "VANILLA"
+      VERSION: "LATEST"
+      ENABLE_RCON: "false"
+      OVERRIDE_SERVER_PROPERTIES: "true"
+      ICON: "https://vmstan.com/content/images/2021/12/trek.png"
+      PVP: "true"
+      MODE: "survival"
+      MOTD: "MHD Java Chaos"
+    restart: unless-stopped
+  mc-bedrock-survival:
+    container_name: mc-bedrock-survival
+    image: itzg/minecraft-bedrock-server:latest
+    networks:
+      frontend:
+    ports:
+      - "19232:19132"
+    volumes:
+      - "/volume1/docker/minecraft-bedrock-survival:/data"
+    environment:
+      EULA: "true"
+      TZ: "America/Chicago"
+      VERSION: "LATEST"
+      DIFFICULTY: "normal"
+      OPS: "2533274807956973"
+      PVP: "true"
+      GAMEMODE: "survival"
+      SERVER_NAME: "MHD Bedrock Survival"
+      ALLOW_CHEATS: "true"
+    restart: unless-stopped
+  mc-bedrock-creative:
+    container_name: mc-bedrock-creative
+    image: itzg/minecraft-bedrock-server:latest
+    networks:
+      frontend:
+    ports:
+      - "19132:19132"
+    volumes:
+      - "/volume1/docker/minecraft-bedrock-creative:/data"
+    environment:
+      EULA: "true"
+      TZ: "America/Chicago"
+      VERSION: "LATEST"
+      OPS: "2533274807956973"
+      GAMEMODE: "creative"
+      SERVER_NAME: "MHD Bedrock Creative"
+    restart: unless-stopped

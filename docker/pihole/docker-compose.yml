@@ -1,19 +1,46 @@
-version: "3"
+version: "3.9"
+
+networks:
+  frontend:
+    name: dns
+    ipam:
+     config:
+       - subnet: 10.5.0.0/24
+         gateway: 10.5.0.1
 
 services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    cap_add:
-      - NET_ADMIN
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
     environment:
-      ServerIP: 192.168.7.5
-      TZ: "America/Chicago"
-      WEBPASSWORD: PASSWORD
-      DNS1: 192.168.7.7#5335
-      DNS2: 192.168.7.158#8053
+      TZ: 'America/Chicago'
+      PIHOLE_DNS_: '10.5.0.3#53;192.168.7.9#53'
+      DNSSEC: 'true'
+      REV_SERVER: 'true'
+      REV_SERVER_DOMAIN: 'vmstan.net'
+      REV_SERVER_TARGET: '192.168.7.1'
+      REV_SERVER_CIDR: '192.168.7.0/24'
+      DHCP_ACTIVE: 'false'
+      SKIPGRAVITYONBOOT: '1'
     volumes:
-      - "./etc-pihole/:/etc/pihole/"
-      - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
-    network_mode: host
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
     restart: unless-stopped
+    networks:
+      frontend:
+        ipv4_address: 10.5.0.2
+  dnsproxy:
+    container_name: dnsproxy
+    environment:
+      - "CONFIG=--cache --cache-min-ttl=1800 -u=tls://9.9.9.9 -f=tls://1.1.1.1"
+    ports:
+      - '853:53/udp'
+    restart: unless-stopped
+    image: vmstan/dnsproxy
+    networks:
+      frontend:
+        ipv4_address: 10.5.0.3

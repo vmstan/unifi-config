@@ -59,7 +59,7 @@ services:
     networks:
       frontend:
     ports:
-      - "19232:19132"
+      - "19232:19132/udp"
     volumes:
       - "/volume1/docker/minecraft-bedrock-survival:/data"
     environment:
@@ -79,7 +79,7 @@ services:
     networks:
       frontend:
     ports:
-      - "19132:19132"
+      - "19132:19132/udp"
     volumes:
       - "/volume1/docker/minecraft-bedrock-creative:/data"
     environment:

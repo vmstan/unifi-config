@@ -18,14 +18,20 @@ services:
       - "80:80/tcp"
     environment:
       TZ: 'America/Chicago'
-      PIHOLE_DNS_: '10.5.0.3#53;192.168.7.9#53'
-      DNSSEC: 'true'
+      PIHOLE_DNS_: '10.5.0.3#53;192.168.7.3#53'
+      DNSSEC: 'false'
       REV_SERVER: 'true'
       REV_SERVER_DOMAIN: 'vmstan.net'
       REV_SERVER_TARGET: '192.168.7.1'
       REV_SERVER_CIDR: '192.168.7.0/24'
       DHCP_ACTIVE: 'false'
       SKIPGRAVITYONBOOT: '1'
+      FTLCONF_IGNORE_LOCALHOST: 'YES'
+      FTLCONF_REPLY_WHEN_BUSY: 'ALLOW'
+      DNSMASQ_LISTENING: 'all'
+    dns:
+      - 10.5.0.3
+      - 192.168.7.3
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'

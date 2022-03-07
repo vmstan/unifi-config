@@ -28,6 +28,7 @@ services:
       SKIPGRAVITYONBOOT: '1'
       FTLCONF_IGNORE_LOCALHOST: 'YES'
       FTLCONF_REPLY_WHEN_BUSY: 'ALLOW'
+      FTLCONF_RATE_LIMIT: '0/0'
       DNSMASQ_LISTENING: 'all'
     dns:
       - 10.5.0.3
@@ -42,7 +43,7 @@ services:
   dnsproxy:
     container_name: dnsproxy
     environment:
-      - "CONFIG=--cache --cache-min-ttl=1800 -u=tls://9.9.9.9 -f=tls://1.1.1.1"
+      - "CONFIG=--cache --cache-min-ttl=1800 --edns --fastest-addr -u=tls://9.9.9.9 -u=tls://1.1.1.1"
     ports:
       - '853:53/udp'
     restart: unless-stopped

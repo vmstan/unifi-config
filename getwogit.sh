@@ -34,7 +34,6 @@ function get_dcpihole() {
 function get_unboundconf() {
     echo -e "Downloading Unbound Configuration"
     curl -s -L --create-dirs -o /usr/local/etc/unbound/unbound.conf "https://raw.githubusercontent.com/vmstan/unifi-config/master/unbound/unbound.conf?token=GHSAT0AAAAAABQTASPYUEL7IPXJ5U6N66LCYRSD4SA"
-
 }
 
 get_dcupdater

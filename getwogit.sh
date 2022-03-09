@@ -31,9 +31,16 @@ function get_dcpihole() {
     curl -s -L --create-dirs -o ./pihole/docker-compose.yml "https://raw.githubusercontent.com/vmstan/unifi-config/master/docker/pihole/docker-compose.yml?token=GHSAT0AAAAAABQTASPZAFRUGWUQWWWFAZW4YRSDOWQ"
 }
 
+function get_unboundconf() {
+    echo -e "Downloading Unbound Configuration"
+    curl -s -L --create-dirs -o /usr/local/etc/unbound/unbound.conf "https://raw.githubusercontent.com/vmstan/unifi-config/master/unbound/unbound.conf?token=GHSAT0AAAAAABQTASPYUEL7IPXJ5U6N66LCYRSD4SA"
+
+}
+
 get_dcupdater
 get_dcbedrock
 get_dcminecraft
 get_dcdnsproxy
 get_dchomebridge
 get_dcpihole
+get_unboundconf

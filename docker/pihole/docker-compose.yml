@@ -4,9 +4,9 @@ networks:
   frontend:
     name: dns
     ipam:
-     config:
-       - subnet: 10.5.0.0/24
-         gateway: 10.5.0.1
+      config:
+        - subnet: 10.5.0.0/24
+          gateway: 10.5.0.1
 
 services:
   pihole:
@@ -17,25 +17,29 @@ services:
       - "53:53/udp"
       - "80:80/tcp"
     environment:
-      TZ: 'America/Chicago'
-      PIHOLE_DNS_: '10.5.0.3#53;192.168.7.3#53'
-      DNSSEC: 'false'
-      REV_SERVER: 'true'
-      REV_SERVER_DOMAIN: 'vmstan.net'
-      REV_SERVER_TARGET: '192.168.7.1'
-      REV_SERVER_CIDR: '192.168.7.0/24'
-      DHCP_ACTIVE: 'false'
-      SKIPGRAVITYONBOOT: '1'
-      FTLCONF_IGNORE_LOCALHOST: 'YES'
-      FTLCONF_REPLY_WHEN_BUSY: 'ALLOW'
-      FTLCONF_RATE_LIMIT: '0/0'
-      DNSMASQ_LISTENING: 'all'
+      TZ: "America/Chicago"
+      PIHOLE_DNS_: "10.5.0.3#53;192.168.7.3#53"
+      DNSSEC: "false"
+      REV_SERVER: "true"
+      REV_SERVER_DOMAIN: "vmstan.net"
+      REV_SERVER_TARGET: "192.168.7.1"
+      REV_SERVER_CIDR: "192.168.7.0/24"
+      DHCP_ACTIVE: "false"
+      SKIPGRAVITYONBOOT: "1"
+      FTLCONF_IGNORE_LOCALHOST: "YES"
+      FTLCONF_REPLY_WHEN_BUSY: "ALLOW"
+      FTLCONF_RATE_LIMIT: "0/0"
+      DNSMASQ_LISTENING: "all"
+      FTLCONF_PRIVACYLEVEL: "0"
+      FTLCONF_RESOLVE_IPV4: "yes"
+      FTLCONF_RESOLVE_IPV6: "yes"
+      FTLCONF_AAAA_QUERY_ANALYSIS: "yes"
     dns:
       - 10.5.0.3
       - 192.168.7.3
     volumes:
-      - './etc-pihole/:/etc/pihole/'
-      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - "./etc-pihole/:/etc/pihole/"
+      - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
     restart: unless-stopped
     networks:
       frontend:
@@ -45,7 +49,7 @@ services:
     environment:
       - "CONFIG=--cache --cache-min-ttl=1800 --edns --fastest-addr -u=tls://9.9.9.9 -u=tls://1.1.1.1"
     ports:
-      - '853:53/udp'
+      - "853:53/udp"
     restart: unless-stopped
     image: vmstan/dnsproxy
     networks:

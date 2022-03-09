@@ -1,14 +1,14 @@
 version: "3.9"
 services:
-    homebridge:
-        container_name: homebridge
-        image: "oznu/homebridge:latest"
-        network_mode: host
-        environment:
-            TZ: America/Chicago
-            HOMEBRIDGE_CONFIG_UI: 1
-            HOMEBRIDGE_CONFIG_UI_PORT: 8581
-            ENABLE_AVAHI: 0
-        volumes:
-            - "/volume1/docker/homebridge:/homebridge"
-        restart: unless-stopped
+  homebridge:
+    container_name: homebridge
+    image: "oznu/homebridge:latest"
+    network_mode: host
+    environment:
+      TZ: America/Chicago
+      HOMEBRIDGE_CONFIG_UI: 1
+      HOMEBRIDGE_CONFIG_UI_PORT: 8581
+      ENABLE_AVAHI: 0
+    volumes:
+      - "/volume1/docker/homebridge:/homebridge"
+    restart: unless-stopped

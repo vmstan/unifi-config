@@ -1,12 +1,12 @@
-version: '3'
+version: "3"
 services:
   stubby:
     container_name: stubby
     image: "mvance/stubby:latest"
     network_mode: bridge
     ports:
-     - "8053:8053/udp"
-     - "8053:8053/tcp"
+      - "8053:8053/udp"
+      - "8053:8053/tcp"
     restart: unless-stopped
     volumes:
-      - '/home/vmstan/stubby/config/stubby.yml:/opt/stubby/etc/stubby/stubby.yml:ro'
+      - "/home/vmstan/stubby/config/stubby.yml:/opt/stubby/etc/stubby/stubby.yml:ro"

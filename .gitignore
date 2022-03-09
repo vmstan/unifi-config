@@ -1,3 +1,6 @@
 .vscode
 .nova
 .DS_Store
+.prettierrc
+docker/pihole/etc-pihole/*
+docker/pihole/etc-dnsmasq.d/*

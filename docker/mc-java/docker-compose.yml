@@ -2,7 +2,7 @@ version: "3.9"
 
 networks:
   frontend:
-    name: minecraft_network
+    name: mc_java_network
 
 services:
   mc-java-survival:

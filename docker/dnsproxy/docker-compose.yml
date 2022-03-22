@@ -3,6 +3,8 @@ version: "3.9"
 services:
   dnsproxy:
     container_name: dnsproxy 
+    volumes:
+      - "./dp-config/:/config/"
     ports:
       - "53:53/udp"
     restart: unless-stopped

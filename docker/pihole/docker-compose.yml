@@ -45,6 +45,8 @@ services:
     networks:
       frontend:
         ipv4_address: 10.5.0.2
+    depends_on:
+      - dnsproxy
   dnsproxy:
     container_name: dnsproxy
     ports:

@@ -1,0 +1,74 @@
+version: "3.9"
+
+networks:
+  frontend:
+    name: dns
+    ipam:
+      config:
+        - subnet: 10.5.0.0/24
+          gateway: 10.5.0.1
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      WEBPASSWORD: ${PIPASS}
+      TZ: "America/Chicago"
+      VIRTUAL_HOST: pi.hole
+      PIHOLE_DNS_: "10.5.0.3#53;192.168.7.3#53"
+      DNSSEC: "false"
+      DNS_FQDN_REQUIRED: "true"
+      DNS_BOGUS_PRIV: "true"
+      REV_SERVER: "false"
+      DHCP_ACTIVE: "true"
+      DHCP_START: "192.168.7.200"
+      DHCP_END: "192.168.7.249"
+      DHCP_ROUTER: "192.168.7.1"
+      DHCP_LEASETIME: "6"
+      PIHOLE_DOMAIN: "vmstan.net"
+      SKIPGRAVITYONBOOT: "1"
+      FTLCONF_IGNORE_LOCALHOST: "YES"
+      FTLCONF_REPLY_WHEN_BUSY: "ALLOW"
+      FTLCONF_RATE_LIMIT: "0/0"
+      DNSMASQ_LISTENING: "all"
+      FTLCONF_PRIVACYLEVEL: "0"
+      FTLCONF_RESOLVE_IPV4: "yes"
+      FTLCONF_RESOLVE_IPV6: "yes"
+      FTLCONF_AAAA_QUERY_ANALYSIS: "yes"
+    dns:
+      - 10.5.0.3
+      - 192.168.7.3
+    volumes:
+      - "./etc-pihole/:/etc/pihole/"
+      - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    networks:
+      frontend:
+        ipv4_address: 10.5.0.2
+    depends_on:
+      - dnsproxy
+      - dhcp-helper
+  dnsproxy:
+    container_name: dnsproxy
+    ports:
+      - "853:53/udp"
+    restart: unless-stopped
+    image: vmstan/dnsproxy
+    networks:
+      frontend:
+        ipv4_address: 10.5.0.3
+  dhcp-helper:
+    container_name: dhcp-helper
+    build: ./dhcp-helper
+    restart: unless-stopped
+    network_mode: "host"
+    command: -s 10.5.0.2
+    cap_add:
+      - NET_ADMIN
